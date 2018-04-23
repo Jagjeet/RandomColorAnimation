@@ -8,13 +8,15 @@ function getRandomIntInclusive(min, max) {
 
 const RandomColorAnimation = function RandomColorAnimation()  {
   this.canvas = document.createElement('canvas');
-  this.canvas.height = 600;
-  this.canvas.width = 600;
+  let w = window.innerWidth;
+  let h = window.innerHeight;
+  this.canvas.height = h;
+  this.canvas.width = w;
  
   let ctx = this.canvas.getContext('2d');
 
   ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, 599, 599);
+  ctx.fillRect(0, 0, w - 1, h - 1);
 
   document.body.insertBefore(this.canvas, document.body.nextSibling);
 
@@ -25,7 +27,7 @@ const RandomColorAnimation = function RandomColorAnimation()  {
     if (e.target && e.target.nodeName === 'BUTTON') {
       console.log("Reset Clicked");
       ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, 599, 599);
+      ctx.fillRect(0, 0, w - 1, h - 1);
     }
   });
 
@@ -36,8 +38,8 @@ const RandomColorAnimation = function RandomColorAnimation()  {
     let r = getRandomIntInclusive(0, 255);
     let g = getRandomIntInclusive(0, 255);
     let b = getRandomIntInclusive(0, 255);
-    let x = getRandomIntInclusive(0, 599);
-    let y = getRandomIntInclusive(0, 599);
+    let x = getRandomIntInclusive(0, w - 1);
+    let y = getRandomIntInclusive(0, h - 1);
     let a = 255; 
 
     ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
